@@ -1,0 +1,70 @@
+syntax="proto3";
+
+package auth_service;
+option go_package="genproto/auth_service";
+
+service AuthService {
+    rpc SignUp(SignUpReq) returns (UserId) {}
+    rpc SignIn(SignInReq) returns (Token) {}
+    rpc ValidateUser(ValidateUserReq) returns (ValidateUserRes) {}
+    rpc RenewToken(RenewTokenReq) returns (RenewTokenRes) {}
+    rpc SignOut(Empty) returns (Empty) {}
+}
+
+message RenewTokenReq {
+    string useragent = 1;
+    string userip = 2;
+    string invaccesstoken = 3;
+}
+
+message RenewTokenRes {
+    string newaccesstoken = 1;
+}
+
+message ValidateUserReq {
+    string accesstoken = 1;
+    string userip = 2;
+    string useragent = 3;
+}
+
+message ValidateUserRes {
+    bool valid = 1;
+    string accesstoken = 2;
+    string userID = 3;
+}
+
+message User {
+    string id = 1;
+    string firstname = 2;
+    string secondname = 3;
+    string username = 4;
+    string email = 5;
+    string password = 6;
+}
+
+message SignUpReq {
+    string firstname = 1;
+    string secondname = 2;
+    string username = 3;
+    string email = 4;
+    string password = 5;
+}
+
+message SignInReq {
+    string email = 1;
+    string password = 2;
+    string userip = 3;
+    string useragent = 4;
+}
+
+message Token {
+    string accesstoken = 1;
+    string id = 2; 
+}
+
+message UserId {
+    string id = 1;
+}
+
+message Empty {
+}

@@ -1,0 +1,34 @@
+syntax="proto3";
+
+package other_service;
+option go_package="genproto/other_service";
+
+service OtherService {
+    rpc CreateOther(CreateOtherRequest) returns (OtherID) {}
+    rpc UpdateOther(UpdateOtherRequest) returns (OtherID) {}
+}
+
+message UpdateOtherRequest {
+    string id = 1;
+    string name = 2;
+    string profession_id =  3;
+    string company_id = 4;
+}
+
+message OtherID {
+    string id = 1;
+}
+
+message CreateOtherRequest {
+    string name = 1;
+    string profession_id = 2;
+    string company_id = 3;
+}
+
+// message Other {
+//     string id = 1;
+//     string name = 2;
+//     string profession_id = 3;
+//     string company_id = 4;
+//     repeated GetOtherAttributes Other_attributes = 5;
+// }

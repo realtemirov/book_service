@@ -1,0 +1,45 @@
+syntax="proto3";
+
+package order_service;
+
+option go_package="genproto/order_service";
+
+service OrderService{
+    rpc CreateOrder(Order) returns (Order) {}
+    rpc GetOrder (OrderId) returns (Order) {}
+    rpc GetAllOrders(Req) returns (Orders) {}
+    rpc UpdateOrder(NewOrder) returns (Order) {}
+    rpc DeleteOrder(OrderId) returns (Order) {}
+}
+
+message Order {
+    string id = 1;
+    string book_id = 2;
+    string user_id = 3;
+    string quantity = 4;
+    string total = 5;
+    string created_at = 6;
+    string updated_at = 7;
+}
+
+message NewOrder{
+    string id = 1;
+    Order order = 2;
+}
+
+message OrderId {
+    string orderId = 1;
+    int32 count = 2;
+}
+
+message Orders {
+    repeated Order orders = 1;
+}
+
+message Req {
+    int32 offset = 1;
+    int32 limit = 2;
+    string search = 3;
+    string sort = 4;
+    bool asc = 5;
+}
