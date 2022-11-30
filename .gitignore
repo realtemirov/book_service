@@ -1,0 +1,6 @@
+genproto/
+vendor/
+.env
+.idea
+protos/
+.DB_Store
